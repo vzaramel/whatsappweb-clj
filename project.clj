@@ -1,5 +1,6 @@
-(defproject vzaramel/whatsapp "0.1.1-SNAPSHOT"
+(defproject vzaramel/whatsapp "0.1.1"
   :description "whatsapp web client"
+  :url "https://github.com/vzaramel/whatsappweb-clj"
   :license {:name "Eclipse Public License - v 1.0"
             :url "http://www.eclipse.org/legal/epl-v10.html"
             :distribution :repo}
@@ -14,9 +15,8 @@
                  [caesium "0.10.0" :exclusions [io.aleph/dirigiste riddley manifold]]
                  [net.glxn.qrgen/javase "2.0"]
                  [gloss "0.2.6"]
-                 [clojusc/protobuf "3.5.1-v1.1-SNAPSHOT"]
-                 [com.google.protobuf/protobuf-java "3.5.1"]
-                 [org.clojure/core.async "0.4.474"]]
+                 [clojusc/protobuf "3.5.1-v1.1"]
+                 [com.google.protobuf/protobuf-java "3.5.1"]]
   :profiles {:1.8 {:dependencies [[org.clojure/clojure "1.8.0"]]}
              :dev {:dependencies [[org.clojure/clojure "1.9.0"]
                                   [org.clojure/test.generative "0.1.4"]
