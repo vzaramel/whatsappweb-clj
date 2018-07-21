@@ -1,8 +1,7 @@
 (ns whatsapp.codec.utils
   (:use [gloss.core.protocols])
   (:require [gloss.core.formats :as gf]
-            [slingshot.slingshot :refer [throw+]]
-            [whatsapp.codec.utils :refer [take-n]]))
+            [slingshot.slingshot :refer [throw+]]))
 
 
 (defn take-n [n codec buf-seq]

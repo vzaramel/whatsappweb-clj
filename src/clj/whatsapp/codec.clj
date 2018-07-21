@@ -5,27 +5,17 @@
             [whatsapp.codec.utils :refer [take-n]]
             [whatsapp.codec.constants :refer [tags tokens]]
             [gloss.core :as g]
-            [gloss.core.formats :as gf]
             [gloss.core.structure :refer [compile-frame]]
             [gloss.io :as gio]
             [slingshot.slingshot :refer [throw+]]
             [protobuf.impl.flatland.mapdef :as pb])
-  (:import (proto Def$WebMessageInfo)))
-;
-;(defprotocol Reader
-;              (read-bytes [this buf-seq]))
-;
-;(defprotocol Writer
-;  (sizeof [this])
-;  (write-bytes [this buf val]))
-
+  (:import (proto Whatsapp$WebMessageInfo)))
 
 (defn get-token [index]
   (if (or (neg-int? index)
           (> index (count tokens)))
     (throw+ {:message (str "Invalid token index: " index)})
     (get tokens index)))
-
 
 (defn get-token-double [index1, index2]
   (let [n (+ (* 256 index1) index2)]
@@ -54,14 +44,9 @@
         [true (apply str (map unchecked-char vals)) b]))
     Writer
     (sizeof [val]
-      (prn val)
       8)
     (write-bytes [_ buf v]
-      (prn buf)
-      (prn v)
       nil)))
-
-
 
 (declare tag-fr)
 
@@ -70,7 +55,6 @@
     (compile-frame [tag-fr tag-fr])
     (fn [[i j] b]
       [true (str i "@" j) b])))
-
 
 (def tag-codecs
   (merge {:LIST_EMPTY (compile-frame g/nil-frame)
@@ -187,7 +171,7 @@
       nil)))
 
 (defn decode-message [msg]
-  (pb/parse  (pb/mapdef Def$WebMessageInfo)
+  (pb/parse  (pb/mapdef Whatsapp$WebMessageInfo)
              (byte-array msg)))
 
 (defn decode
